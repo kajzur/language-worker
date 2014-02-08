@@ -16,3 +16,9 @@ Jest łatwiejszą wersją "Nauki do bólu", gdyż możemy, klikając w przycisk 
 
 Statystyki nauki są zbierane tylko w trybie "Nauka w formie testu". 
 W zakładce "Przegląd postępów" możemy dla każdej grupy wyświetlić wykres podejść oraz zapisać taki wykres do SVG.
+
+# ChangeLog
+
+v1.0.1
+- Fix bug with unwanted window, when user starts learning.
+- Fix some typos.
