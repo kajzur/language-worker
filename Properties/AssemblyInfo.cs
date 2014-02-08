@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("MultiLanguage")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mateusz Mazurek")]
 [assembly: AssemblyProduct("MultiLanguage")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

@@ -20,6 +20,7 @@ namespace MultiLanguage
     /// </summary>
     public partial class addGroup : Window
     {
+        int imported = 0;
         public addGroup()
         {
             InitializeComponent();
@@ -101,8 +102,19 @@ namespace MultiLanguage
                 {
 
                     if (line == "") continue;
-                    string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None);
-                    linesWithoutBlankLines.Add(new Word(newgroup, words[0], words[1]));
+                    try
+                    {
+                        string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None); 
+                        linesWithoutBlankLines.Add(new Word(newgroup, words[0], words[1]));
+                        imported++;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        continue;
+                    
+                    }
+                    
 
                 }
 
@@ -123,11 +135,20 @@ namespace MultiLanguage
                 string delimeter = textBox2.Text;
                 foreach (string line in lines)
                 {
-
                     if (line == "") continue;
-                    string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None);
-                    linesWithoutBlankLines.Add(new Word(((Group)comboBox2.SelectedItem).Id, words[0], words[1]));
+                    try
+                    {
 
+                        string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None);
+                        linesWithoutBlankLines.Add(new Word(((Group)comboBox2.SelectedItem).Id, words[0], words[1]));
+                        imported++;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        continue;
+                    
+                    }
                 }
 
                 progressBar1.Minimum = 0;
@@ -147,7 +168,7 @@ namespace MultiLanguage
             SqlAccess sql = new SqlAccess();
             sql.GetGroups(true);
             this.Close();
-            MessageBox.Show("Udało się zaimportować "+progressBar1.Value+" słówek.");
+            MessageBox.Show("Udało się zaimportować "+imported+" słówek.");
             
         }
 
