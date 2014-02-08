@@ -30,7 +30,6 @@ namespace MultiLanguage
             InitializeComponent();
             selectedStyle.Content = style;
             ts = DateTime.Now;
-            MessageBox.Show("rozpoczescie "+ts.ToString());
             this.type = type;
             basicLanguage.KeyDown += new KeyEventHandler(basicLanguage_KeyDown);
             foreach(object ob in list.SelectedItems)
@@ -41,7 +40,6 @@ namespace MultiLanguage
             if (this.type == 1) {
 
                 Random random = new Random();
-                //int randomNumber = random.Next(0, 100);
                 words = sql.getWordsFromGroups(selectedGroups);
                 howMuchAll.Content = words.Count;
                 progressBar1.Maximum = words.Count;
@@ -121,8 +119,8 @@ namespace MultiLanguage
                             }
                             else
                             {
-                                SqlAccess sql = new SqlAccess();
-                                sql.UpdateStats(new Result(selectedGroups, (int)goodAnsv.Content, (int)badAnsv.Content, DateTime.Now.Subtract(ts)));
+                                //SqlAccess sql = new SqlAccess();
+                                //sql.UpdateStats(new Result(selectedGroups, (int)goodAnsv.Content, (int)badAnsv.Content, DateTime.Now.Subtract(ts)));
                                 this.Close();
                                 ShowResult();
                             }
@@ -228,8 +226,8 @@ namespace MultiLanguage
                             else {
                                 
                                 
-                                SqlAccess sql = new SqlAccess();
-                                sql.UpdateStats(new Result(selectedGroups, (int)goodAnsv.Content, (int)badAnsv.Content, DateTime.Now.Subtract(ts)));
+                                //SqlAccess sql = new SqlAccess();
+                                //sql.UpdateStats(new Result(selectedGroups, (int)goodAnsv.Content, (int)badAnsv.Content, DateTime.Now.Subtract(ts)));
                                 this.Close();
                                 ShowResult();
                             }
