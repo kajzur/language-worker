@@ -14,3 +14,5 @@ Tryb w którym mamy słówka na które nie odpowiemy, wypadają z puli.
 ##### Tryb "Nauka początkowa"
 Jest łatwiejszą wersją "Nauki do bólu", gdyż możemy, klikając w przycisk obok pola do wpisania słówka, uzyskać pierwszą literę, jako podpowiedź.
 
+Statystyki nauki są zbierane tylko w trybie "Nauka w formie testu". 
+W zakładce "Przegląd postępów" możemy dla każdej grupy wyświetlić wykres podejść oraz zapisać taki wykres do SVG.
