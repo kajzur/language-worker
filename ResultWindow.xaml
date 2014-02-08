@@ -1,0 +1,18 @@
+﻿<Window x:Class="MultiLanguage.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Podsumowanie" Height="332" Width="403" ResizeMode="NoResize">
+    <Grid Height="296" Width="375">
+        <ListBox Height="134" HorizontalAlignment="Left" Margin="12,110,0,0" Name="listBox1" VerticalAlignment="Top" Width="351" />
+        <Label Content="Całkowita ilość słówek" Height="28" HorizontalAlignment="Left" Margin="20,10,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="146,10,0,0" Name="allWords" VerticalAlignment="Top" />
+        <Label Content="Poprawnych odpowiedzi" Height="28" HorizontalAlignment="Left" Margin="20,33,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="154,33,0,0" Name="posAnsw" VerticalAlignment="Top" />
+        <Label Content="Błędów" Height="28" HorizontalAlignment="Left" Margin="20,56,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="74,56,0,0" Name="negAnsw" VerticalAlignment="Top" />
+        <Label Content="Błędy:" Height="28" HorizontalAlignment="Left" Margin="20,92,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Czas trwania" Height="28" HorizontalAlignment="Left" Margin="239,12,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="321,12,0,0" Name="time" VerticalAlignment="Top" />
+        <Button Content="Ok" Height="23" HorizontalAlignment="Left" Margin="146,250,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+    </Grid>
+</Window>
