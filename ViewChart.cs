@@ -23,9 +23,9 @@ namespace MultiLanguage
             SqlAccess sql = new SqlAccess();
             basicSerie.Smooth = true;
             List<double> list = sql.GetStatsForGroup(current);
-            basicSerie.Points.Add(new DataPoint(0,0));
             int i = 1;
-
+            if(list.Count>0)
+            basicSerie.Points.Add(new DataPoint(0.0,0));
             foreach (double d in list)
             {
 

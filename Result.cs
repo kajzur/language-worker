@@ -11,6 +11,9 @@ namespace MultiLanguage
         public int positiveAnsw;
         public int negativeAnsw;
         public TimeSpan duration;
+        public Result() {
+        
+        }
         public Result(List<Group> finishedGroups, int positiveAnsw, int negativeAnsw, TimeSpan duration)
         {
 

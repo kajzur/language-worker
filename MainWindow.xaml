@@ -24,7 +24,7 @@
                     </TabItem>
                     <TabItem Header="Nauka" Name="tabItem2">
                         <Grid>
-                            <ListBox Height="140" HorizontalAlignment="Left" Margin="38,28,0,0" Name="listBox2" VerticalAlignment="Top" Width="413" SelectionChanged="listBox2_SelectionChanged" />
+                            <ListBox Height="140" HorizontalAlignment="Left" Margin="38,28,0,0" Name="listBox2" VerticalAlignment="Top" Width="413" SelectionChanged="listBox2_SelectionChanged" SelectionMode="Multiple" />
                             <Label Content="Zaznacz zestawy których chcesz się nauczyć:" Height="28" HorizontalAlignment="Left" Margin="130,14,0,0" Name="label2" VerticalAlignment="Top" />
                             <RadioButton Content="Nauka do bólu" Height="16" HorizontalAlignment="Left" Margin="38,182,0,0" Name="radioButton1" VerticalAlignment="Top" GroupName="style" IsChecked="True" />
                             <RadioButton Content="Nauka w formie testu" Height="16" HorizontalAlignment="Left" Margin="176,182,0,0" Name="radioButton2" VerticalAlignment="Top" GroupName="style" />
