@@ -36,7 +36,7 @@ namespace MultiLanguage
                 timeSpan.Hours,
                 timeSpan.Minutes,
                 timeSpan.Seconds);
-            Show();
+            ShowDialog();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

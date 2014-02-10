@@ -20,12 +20,13 @@ namespace MultiLanguage
     /// </summary>
     public partial class addGroup : Window
     {
-        int imported = 0;
+        int importedWords = 0;
+        int failedWords = 0;
         public addGroup()
         {
             InitializeComponent();
             
-            SqlAccess sql= new SqlAccess();
+            SqlAccess sql = new SqlAccess();
             comboBox1.ItemsSource = sql.GetLanguages();
             comboBox1.SelectedIndex = 0;
             List<Group> temp = sql.GetGroups(false);
@@ -85,15 +86,22 @@ namespace MultiLanguage
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            button2.IsEnabled = false;
+
+            
+
+            
             if (comboBox2.SelectedItem == null)
             {
+                if (textBox2.Text.Equals("")) { MessageBox.Show("Podaj delimiter."); return; }
+                if (textBox3.Text.Equals("")) { MessageBox.Show("Wybierz plik do wgrania."); return; }
+                if (textBox1.Text.Equals("")) { MessageBox.Show("Podaj nazwę dla nowej grupy"); return; }
+                button2.IsEnabled = false;
                 Language lg = (Language)comboBox1.SelectedItem;
                 SqlAccess sql = new SqlAccess();
                 long newgroup = sql.InsertGroup(lg, textBox1.Text, textBox2.Text);
 
-                progressBar1.Visibility = Visibility.Visible;
-                BackgroundWorker bgw = new BackgroundWorker();
+                progressBar1.Visibility = Visibility.Visible;//enable the progressbar
+                BackgroundWorker bgw = new BackgroundWorker(); //new thread
                 string file = textBox3.Text;
                 string[] lines = System.IO.File.ReadAllLines(file, System.Text.Encoding.Default);
                 List<Word> linesWithoutBlankLines = new List<Word>();
@@ -106,11 +114,12 @@ namespace MultiLanguage
                     {
                         string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None); 
                         linesWithoutBlankLines.Add(new Word(newgroup, words[0], words[1]));
-                        imported++;
+                        importedWords++;
                     }
                     catch (Exception ex)
                     {
 
+                        failedWords++;
                         continue;
                     
                     }
@@ -127,7 +136,12 @@ namespace MultiLanguage
             }
             else
             {
+                //pre-asserts
+                
+                if (textBox2.Text.Equals("")) { MessageBox.Show("Podaj delimiter."); return; }
+                if (textBox3.Text.Equals("")) { MessageBox.Show("Wybierz plik do wgrania."); return; }
 
+                button2.IsEnabled = false;
                 BackgroundWorker bgw = new BackgroundWorker();
                 string file = textBox3.Text;
                 string[] lines = System.IO.File.ReadAllLines(file, Encoding.Default);
@@ -141,11 +155,11 @@ namespace MultiLanguage
 
                         string[] words = line.Split(new string[] { delimeter }, StringSplitOptions.None);
                         linesWithoutBlankLines.Add(new Word(((Group)comboBox2.SelectedItem).Id, words[0], words[1]));
-                        imported++;
+                        importedWords++;
                     }
                     catch (Exception ex)
                     {
-
+                        failedWords++;
                         continue;
                     
                     }
@@ -168,7 +182,7 @@ namespace MultiLanguage
             SqlAccess sql = new SqlAccess();
             sql.GetGroups(true);
             this.Close();
-            MessageBox.Show("Udało się zaimportować "+imported+" słówek.");
+            MessageBox.Show("Udało się zaimportować "+importedWords+" słówek." +(failedWords>0?" Błedy wystąpiły przy "+failedWords+ " słowach.":""));
             
         }
 
@@ -177,12 +191,13 @@ namespace MultiLanguage
             List<Word> lines = (List<Word>)e.Argument;
 
             SqlAccess sql = new SqlAccess();
-            foreach (Word s in lines)
+            foreach (Word wordsFromFile in lines)
             {
                 App.Current.Dispatcher.Invoke((Action)delegate()
                 {
-                    bool t = sql.InsertWord(s.Id_group, s.Foregin, s.Basic);
+                    bool t = sql.InsertWord(wordsFromFile.Id_group, wordsFromFile.Foregin, wordsFromFile.Basic);
                     progressBar1.Value=progressBar1.Value+1;
+
                 });
                 
             

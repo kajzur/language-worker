@@ -32,11 +32,14 @@ namespace MultiLanguage
             sql.GetGroups(true);
             listBox1.ItemsSource = groups;
             listBox2.ItemsSource = groups;
-            if (groups.Count > 0)
-                listBox2.SelectedIndex = 0;
             listBox3.ItemsSource = groups;
             if (groups.Count > 0)
+            {
+                listBox2.SelectedIndex = 0;
                 listBox3.SelectedIndex = 0;
+                listBox1.SelectedIndex = 0;
+            }
+                
             listBox3.MouseDoubleClick+=new MouseButtonEventHandler(listBox3_MouseDoubleClick);
 
         }
@@ -67,9 +70,11 @@ namespace MultiLanguage
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            
             addGroup adg = new addGroup();
+
             adg.InitializeComponent();
-            adg.Show();
+            adg.ShowDialog();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -103,17 +108,17 @@ namespace MultiLanguage
             if (radioButton1.IsChecked==true)//nauka do bolu
             {
                 lw = new LearningWindow("Wybrano tryb: Nauka do bólu",1, listBox2);
-                lw.Show();
+                lw.ShowDialog();
             }
             else if (radioButton2.IsChecked==true)//nauka w formie testu
             {
                 lw = new LearningWindow("Wybrano tryb: Nauka w formie testu",2, listBox2);
-                lw.Show();
+                lw.ShowDialog();
             }
             else if (radioButton3.IsChecked == true)//nauka z pomoca
             {
                 lw = new LearningWindow("Wybrano tryb: Nauka dla początkujących",3, listBox2);
-                lw.Show();
+                lw.ShowDialog();
             }
         }
     }

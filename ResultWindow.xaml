@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MultiLanguage.ResultWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Podsumowanie" Height="376" Width="462" ResizeMode="NoResize">
+        Title="Podsumowanie" Height="376" Width="462" ResizeMode="CanMinimize">
     <Grid Height="310" Width="408">
         <ListBox Height="134" HorizontalAlignment="Left" Margin="12,110,0,0" Name="listBox1" VerticalAlignment="Top" Width="384" />
         <Label Content="Całkowita ilość słówek" Height="28" HorizontalAlignment="Left" Margin="20,10,0,0" Name="label1" VerticalAlignment="Top" />

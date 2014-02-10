@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MultiLanguage.LearningWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Nauka" Height="325" Width="496" ResizeMode="NoResize">
+        Title="Nauka" Height="325" Width="496" ResizeMode="CanMinimize">
     <Grid>
         <Label Content="Dummy" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="selectedStyle" VerticalAlignment="Top" />
         <Label Content="Przetlumacz:" Height="28" HorizontalAlignment="Left" Margin="53,52,0,0" Name="label1" VerticalAlignment="Top" />
