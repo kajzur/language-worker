@@ -2,18 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Nauka" Height="325" Width="496" ResizeMode="CanMinimize">
-    <Grid>
+    <Grid FlowDirection="LeftToRight">
         <Label Content="Dummy" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="selectedStyle" VerticalAlignment="Top" />
         <Label Content="Przetlumacz:" Height="28" HorizontalAlignment="Left" Margin="53,52,0,0" Name="label1" VerticalAlignment="Top" />
-        <Label Content="foregin" Height="28" HorizontalAlignment="Right" Margin="0,68,198,0" Name="foreginWord" VerticalAlignment="Top" Foreground="#FFC42B2B" FontSize="18" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="53,104,0,0" Name="basicLanguage" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="53,137,0,0" Name="basicLanguage" VerticalAlignment="Top" Width="120" />
         <ProgressBar Height="10" HorizontalAlignment="Left" Margin="53,266,0,0" Name="progressBar1" VerticalAlignment="Top" Width="395" />
-        <Label Content="Wszystkich:" Height="28" HorizontalAlignment="Left" Margin="53,151,0,0" Name="label2" VerticalAlignment="Top" />
-        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="116,151,0,0" Name="howMuchAll" VerticalAlignment="Top" />
-        <Label Content="Poprawnie:" Height="28" HorizontalAlignment="Left" Margin="53,172,0,0" Name="label3" VerticalAlignment="Top" />
-        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="116,172,0,0" Name="goodAnsv" VerticalAlignment="Top" Foreground="#FF37941E" />
-        <Label Content="Nie poprawnie:" Height="28" HorizontalAlignment="Left" Margin="53,190,0,0" Name="label4" VerticalAlignment="Top" />
-        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="132,190,0,0" Name="badAnsv" VerticalAlignment="Top" />
-        <Label Content="Podpowiedz pierwszą literę.." Height="28" HorizontalAlignment="Left" Margin="179,108,0,0" Name="label5" VerticalAlignment="Top" IsEnabled="True" Visibility="Hidden" />
+        <Label Content="Wszystkich:" Height="28" HorizontalAlignment="Left" Margin="53,166,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="116,166,0,0" Name="howMuchAll" VerticalAlignment="Top" />
+        <Label Content="Poprawnie:" Height="28" HorizontalAlignment="Left" Margin="53,187,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="116,187,0,0" Name="goodAnsv" VerticalAlignment="Top" Foreground="#FF37941E" />
+        <Label Content="Nie poprawnie:" Height="28" HorizontalAlignment="Left" Margin="53,205,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="132,205,0,0" Name="badAnsv" VerticalAlignment="Top" />
+        <Label Content="Podpowiedz pierwszą literę.." Height="28" HorizontalAlignment="Left" Margin="179,137,0,0" Name="label5" VerticalAlignment="Top" IsEnabled="True" Visibility="Hidden" />
+        <Label Content="Pytano o" Height="28" HorizontalAlignment="Left" Margin="228,166,0,0" Name="label6" VerticalAlignment="Top" Visibility="Collapsed" />
+        <Label Content="Poprawna odpowiedź:" Height="28" HorizontalAlignment="Left" Margin="228,187,0,0" Name="label7" VerticalAlignment="Top" Visibility="Collapsed" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="351,192,0,0" Name="lastBasic" Text="TextBlock" VerticalAlignment="Top" Visibility="Collapsed" TextWrapping="Wrap" />
+        <TextBlock Height="23"  HorizontalAlignment="Left" Margin="53,86,0,0" Name="foreginWord" Text="TextBlock" VerticalAlignment="Top" FontSize="15" TextWrapping="Wrap" Foreground="#FF902E2E" FontWeight="Bold" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="287,171,0,0" Name="lastForeign" Text="TextBlock" VerticalAlignment="Top" Visibility="Collapsed" />
     </Grid>
 </Window>

@@ -26,6 +26,7 @@ namespace MultiLanguage
         DateTime ts;
         List<Word> bad = new List<Word>();
         Dictionary<Group, Result> groupsWithResult = new Dictionary<Group, Result>();//used only for multiplie groups
+        Word lastWord;
         public LearningWindow(String style, int type, ListBox list)
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace MultiLanguage
                 badAnsv.Content = 0;
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
-                foreginWord.Content=words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
             
             }
             else if (this.type == 2)
@@ -70,7 +71,7 @@ namespace MultiLanguage
                 badAnsv.Content = 0;
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
-                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
             
             }
             else if (this.type == 3) {
@@ -85,7 +86,7 @@ namespace MultiLanguage
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
                 label5.MouseDown += new MouseButtonEventHandler(label5_MouseDown );
-                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
             }
 
         }
@@ -122,6 +123,7 @@ namespace MultiLanguage
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
+                            lastWord = current;
                             if (words.Count > 0)
                             {
                                 progressBar1.Value++;
@@ -129,7 +131,13 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else
                             {
@@ -147,8 +155,13 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
-
+                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            lastForeign.Text = lastWord.Basic;
+                            lastBasic.Text = lastWord.Foregin;
+                            lastForeign.Visibility = Visibility.Visible;
+                            lastBasic.Visibility = Visibility.Visible;
+                            label6.Visibility = Visibility.Visible;
+                            label7.Visibility = Visibility.Visible;
                         }
                         basicLanguage.Text = "";
                     }
@@ -169,6 +182,7 @@ namespace MultiLanguage
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
+                            lastWord = current;
                             if (words.Count > 0)
                             {
                                 progressBar1.Value++;
@@ -178,7 +192,13 @@ namespace MultiLanguage
                                 currResult.positiveAnsw++;
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                                 words.Remove(current);
                             }
                             else
@@ -203,7 +223,13 @@ namespace MultiLanguage
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
 
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else
                             {
@@ -232,6 +258,7 @@ namespace MultiLanguage
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
+                            lastWord = current;
                             if (words.Count > 0)
                             {
                                 progressBar1.Value++;
@@ -239,11 +266,16 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else
                             {
-
 
                                 //SqlAccess sql = new SqlAccess();
                                 //sql.UpdateStats(new Result(selectedGroups, (int)goodAnsv.Content, (int)badAnsv.Content, DateTime.Now.Subtract(ts)));
@@ -258,8 +290,13 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
-
+                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            lastForeign.Text = lastWord.Basic;
+                            lastBasic.Text = lastWord.Foregin;
+                            lastForeign.Visibility = Visibility.Visible;
+                            lastBasic.Visibility = Visibility.Visible;
+                            label6.Visibility = Visibility.Visible;
+                            label7.Visibility = Visibility.Visible;
                         }
                         basicLanguage.Text = "";
                     }
@@ -283,9 +320,11 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
+                        lastWord = current;
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
+                            
                             if (words.Count > 0)
                             {
                                 progressBar1.Value++;
@@ -293,7 +332,13 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else
                             {
@@ -311,8 +356,13 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
-
+                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            lastForeign.Text = lastWord.Basic;
+                            lastBasic.Text = lastWord.Foregin;
+                            lastForeign.Visibility = Visibility.Visible;
+                            lastBasic.Visibility = Visibility.Visible;
+                            label6.Visibility = Visibility.Visible;
+                            label7.Visibility = Visibility.Visible;
                         }
                         basicLanguage.Text = "";
                     }
@@ -330,7 +380,7 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
-                        //MessageBox.Show(current.Basic);
+                        lastWord = current;
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
@@ -342,8 +392,14 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
                                 words.Remove(current);
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else {
                        
@@ -364,7 +420,13 @@ namespace MultiLanguage
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
 
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else {
 
@@ -389,6 +451,7 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
+                        lastWord = current;
                         if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
                         {
                             words.Remove(current);
@@ -399,7 +462,13 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                lastForeign.Text = lastWord.Basic;
+                                lastBasic.Text = lastWord.Foregin;
+                                lastForeign.Visibility = Visibility.Visible;
+                                lastBasic.Visibility = Visibility.Visible;
+                                label6.Visibility = Visibility.Visible;
+                                label7.Visibility = Visibility.Visible;
                             }
                             else {
                                 
@@ -417,8 +486,13 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Content = words.ElementAt<Word>(indexOfCurrentWord).Basic;
-
+                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            lastForeign.Text = lastWord.Basic;
+                            lastBasic.Text = lastWord.Foregin;
+                            lastForeign.Visibility = Visibility.Visible;
+                            lastBasic.Visibility = Visibility.Visible;
+                            label6.Visibility = Visibility.Visible;
+                            label7.Visibility = Visibility.Visible;
                         }
                         basicLanguage.Text = "";
                     }
@@ -426,6 +500,7 @@ namespace MultiLanguage
                         MessageBox.Show("Wybrana grupa nie ma dodanych slow.");
 
                 }
+
             }
         }
     }

@@ -19,13 +19,17 @@ namespace MultiLanguage
             ax.Unit = "%";
             ax.Title = "Poprawne odpowiedzi";
             model.Axes.Add(ax);
-
+            
             SqlAccess sql = new SqlAccess();
             basicSerie.Smooth = true;
             List<double> list = sql.GetStatsForGroup(current);
             int i = 1;
             if(list.Count>0)
             basicSerie.Points.Add(new DataPoint(0.0,0));
+            basicSerie.MarkerType = MarkerType.Circle;
+            basicSerie.MarkerSize = 3;
+            basicSerie.SelectionMode = SelectionMode.Single;
+            
             foreach (double d in list)
             {
 

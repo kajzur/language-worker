@@ -152,12 +152,14 @@ namespace MultiLanguage
         {
 
             String groups = "";
+
             foreach (Group p in list)
                 groups += p.Id + ",";
 
             List<Word> words = new List<Word>();
-            cmd.CommandText = "Select * from words where ID_Groups in (@in_parameter);";
-            cmd.Parameters.Add(new SQLiteParameter("@in_parameter", groups.Remove(groups.Length-1)));
+            string finals = groups.Remove(groups.Length - 1);
+            cmd.CommandText = "Select * from words where ID_groups in ("+finals+");";
+            //cmd.Parameters.Add(new SQLiteParameter("@in_parameter", DbType.Int32,finals));
             SQLiteDataReader data = cmd.ExecuteReader();
             while (data.Read())
             {
@@ -192,7 +194,7 @@ namespace MultiLanguage
 
             List<double> list = new List<double>();
 
-            cmd.CommandText = "select ((PositiveAnsw*1.0)/(PositiveAnsw+NegativeAnsw))*100 from stats where ID_group = @id_g group by ID order by Data asc ";
+            cmd.CommandText = "select round(((PositiveAnsw*1.0)/(PositiveAnsw+NegativeAnsw))*100) from stats where ID_group = @id_g group by ID order by Data asc ";
             cmd.Parameters.Add(new SQLiteParameter("@id_g", g.Id));
             SQLiteDataReader data = cmd.ExecuteReader();
             while (data.Read()) {
