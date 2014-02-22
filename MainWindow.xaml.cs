@@ -107,17 +107,17 @@ namespace MultiLanguage
             LearningWindow lw;
             if (radioButton1.IsChecked==true)//nauka do bolu
             {
-                lw = new LearningWindow("Wybrano tryb: Nauka do bólu",1, listBox2);
+                lw = new LearningWindow("Wybrano tryb: Nauka do bólu",1, listBox2, comboBox1);
                 lw.ShowDialog();
             }
             else if (radioButton2.IsChecked==true)//nauka w formie testu
             {
-                lw = new LearningWindow("Wybrano tryb: Nauka w formie testu",2, listBox2);
+                lw = new LearningWindow("Wybrano tryb: Nauka w formie testu", 2, listBox2, comboBox1);
                 lw.ShowDialog();
             }
             else if (radioButton3.IsChecked == true)//nauka z pomoca
             {
-                lw = new LearningWindow("Wybrano tryb: Nauka dla początkujących",3, listBox2);
+                lw = new LearningWindow("Wybrano tryb: Nauka dla początkujących", 3, listBox2, comboBox1);
                 lw.ShowDialog();
             }
         }

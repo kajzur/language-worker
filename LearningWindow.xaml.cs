@@ -27,13 +27,15 @@ namespace MultiLanguage
         List<Word> bad = new List<Word>();
         Dictionary<Group, Result> groupsWithResult = new Dictionary<Group, Result>();//used only for multiplie groups
         Word lastWord;
-        public LearningWindow(String style, int type, ListBox list)
+        int selectedType = 0;
+        
+        public LearningWindow(String style, int type, ListBox list, ComboBox choosenType)
         {
             InitializeComponent();
             selectedStyle.Content = style;
             ts = DateTime.Now;
             this.type = type;
-            
+            this.selectedType = choosenType.SelectedIndex;
             foreach(object ob in list.SelectedItems)
                 selectedGroups.Add((Group)ob);
             if(selectedGroups.Count==1)
@@ -57,7 +59,10 @@ namespace MultiLanguage
                 badAnsv.Content = 0;
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
-                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                if(selectedType==0)
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                else
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Foregin;
             
             }
             else if (this.type == 2)
@@ -71,7 +76,10 @@ namespace MultiLanguage
                 badAnsv.Content = 0;
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
-                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                if (selectedType == 0)
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                else
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Foregin;
             
             }
             else if (this.type == 3) {
@@ -86,7 +94,10 @@ namespace MultiLanguage
                 goodAnsv.Content = 0;
                 indexOfCurrentWord = random.Next(0, words.Count);
                 label5.MouseDown += new MouseButtonEventHandler(label5_MouseDown );
-                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                if (selectedType == 0)
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                else
+                    foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Foregin;
             }
 
         }
@@ -103,7 +114,10 @@ namespace MultiLanguage
         void label5_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Word current = words.ElementAt<Word>(indexOfCurrentWord);
-            basicLanguage.Text = current.Foregin.Substring(0, 1);
+            if (selectedType == 0)
+                basicLanguage.Text = current.Foregin.Substring(0, 1);
+            else
+                basicLanguage.Text = current.Basic.Substring(0, 1);
             basicLanguage.Focus();
             basicLanguage.CaretIndex = 1;
         }
@@ -120,7 +134,7 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             lastWord = current;
@@ -131,7 +145,7 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -155,7 +169,7 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                             lastForeign.Text = lastWord.Basic;
                             lastBasic.Text = lastWord.Foregin;
                             lastForeign.Visibility = Visibility.Visible;
@@ -179,7 +193,7 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             lastWord = current;
@@ -192,7 +206,7 @@ namespace MultiLanguage
                                 currResult.positiveAnsw++;
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -223,7 +237,7 @@ namespace MultiLanguage
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
 
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -255,7 +269,7 @@ namespace MultiLanguage
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             lastWord = current;
@@ -266,7 +280,7 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -290,7 +304,7 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                             lastForeign.Text = lastWord.Basic;
                             lastBasic.Text = lastWord.Foregin;
                             lastForeign.Visibility = Visibility.Visible;
@@ -321,7 +335,7 @@ namespace MultiLanguage
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
                         lastWord = current;
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             
@@ -332,7 +346,7 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -356,7 +370,7 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                             lastForeign.Text = lastWord.Basic;
                             lastBasic.Text = lastWord.Foregin;
                             lastForeign.Visibility = Visibility.Visible;
@@ -381,7 +395,7 @@ namespace MultiLanguage
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
                         lastWord = current;
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             if (words.Count > 0)
@@ -392,7 +406,7 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 words.Remove(current);
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
@@ -420,7 +434,7 @@ namespace MultiLanguage
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
 
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -448,11 +462,12 @@ namespace MultiLanguage
                 }
                 else if (this.type == 3)
                 {
+                    MessageBox.Show("3");
                     if (words.Count != 0)
                     {
                         Word current = words.ElementAt<Word>(indexOfCurrentWord);
                         lastWord = current;
-                        if (basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase))
+                        if ((basicLanguage.Text.Equals(current.Foregin, StringComparison.OrdinalIgnoreCase) && selectedType == 0) || (basicLanguage.Text.Equals(current.Basic, StringComparison.OrdinalIgnoreCase) && selectedType == 1))
                         {
                             words.Remove(current);
                             if (words.Count > 0)
@@ -462,7 +477,7 @@ namespace MultiLanguage
 
                                 Random r = new Random();
                                 indexOfCurrentWord = r.Next(0, words.Count);
-                                foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                                foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                                 lastForeign.Text = lastWord.Basic;
                                 lastBasic.Text = lastWord.Foregin;
                                 lastForeign.Visibility = Visibility.Visible;
@@ -486,7 +501,7 @@ namespace MultiLanguage
                             badAnsv.Content = (int)badAnsv.Content + 1;
                             Random r = new Random();
                             indexOfCurrentWord = r.Next(0, words.Count);
-                            foreginWord.Text = words.ElementAt<Word>(indexOfCurrentWord).Basic;
+                            foreginWord.Text = selectedType == 0 ? words.ElementAt<Word>(indexOfCurrentWord).Basic : words.ElementAt<Word>(indexOfCurrentWord).Foregin;
                             lastForeign.Text = lastWord.Basic;
                             lastBasic.Text = lastWord.Foregin;
                             lastForeign.Visibility = Visibility.Visible;
